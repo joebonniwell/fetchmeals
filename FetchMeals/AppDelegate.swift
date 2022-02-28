@@ -13,7 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        print("appDelegate didFinishLaunchingWithOptions")
+        
+        if #available(iOS 13, *) {
+            print("iOS 13+")
+        } else {
+            print("iOS 12")
+            self.window = mainWindow()
+        }
+        
         return true
     }
 

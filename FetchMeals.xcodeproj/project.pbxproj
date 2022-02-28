@@ -15,6 +15,7 @@
 		9E0B04E527CCF73C00BDE5B4 /* FetchMealsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B04E427CCF73C00BDE5B4 /* FetchMealsTests.swift */; };
 		9E0B04EF27CCF73C00BDE5B4 /* FetchMealsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B04EE27CCF73C00BDE5B4 /* FetchMealsUITests.swift */; };
 		9E0B04F127CCF73C00BDE5B4 /* FetchMealsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B04F027CCF73C00BDE5B4 /* FetchMealsUITestsLaunchTests.swift */; };
+		9E0B04FE27CCFC4500BDE5B4 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B04FD27CCFC4500BDE5B4 /* NavigationCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		9E0B04EA27CCF73C00BDE5B4 /* FetchMealsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FetchMealsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E0B04EE27CCF73C00BDE5B4 /* FetchMealsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMealsUITests.swift; sourceTree = "<group>"; };
 		9E0B04F027CCF73C00BDE5B4 /* FetchMealsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMealsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9E0B04FD27CCFC4500BDE5B4 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				9E0B04D627CCF73B00BDE5B4 /* Assets.xcassets */,
 				9E0B04D827CCF73B00BDE5B4 /* LaunchScreen.storyboard */,
 				9E0B04DB27CCF73B00BDE5B4 /* Info.plist */,
+				9E0B04FD27CCFC4500BDE5B4 /* NavigationCoordinator.swift */,
 			);
 			path = FetchMeals;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			files = (
 				9E0B04D227CCF73900BDE5B4 /* ViewController.swift in Sources */,
 				9E0B04CE27CCF73900BDE5B4 /* AppDelegate.swift in Sources */,
+				9E0B04FE27CCFC4500BDE5B4 /* NavigationCoordinator.swift in Sources */,
 				9E0B04D027CCF73900BDE5B4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
