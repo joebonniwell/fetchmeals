@@ -16,9 +16,10 @@
 		9E0B04EF27CCF73C00BDE5B4 /* FetchMealsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B04EE27CCF73C00BDE5B4 /* FetchMealsUITests.swift */; };
 		9E0B04F127CCF73C00BDE5B4 /* FetchMealsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B04F027CCF73C00BDE5B4 /* FetchMealsUITestsLaunchTests.swift */; };
 		9E0B04FE27CCFC4500BDE5B4 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B04FD27CCFC4500BDE5B4 /* NavigationCoordinator.swift */; };
-		9E0B050427CD46DC00BDE5B4 /* MealDBAPIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B050327CD46DC00BDE5B4 /* MealDBAPIServiceTests.swift */; };
-		9E0B050627CD475700BDE5B4 /* MealDBAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B050527CD475700BDE5B4 /* MealDBAPIService.swift */; };
+		9E0B050427CD46DC00BDE5B4 /* MealDBAPIRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B050327CD46DC00BDE5B4 /* MealDBAPIRepositoryTests.swift */; };
+		9E0B050627CD475700BDE5B4 /* MealDBAPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B050527CD475700BDE5B4 /* MealDBAPIRepository.swift */; };
 		9E0B050827CD5C5200BDE5B4 /* MealCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B050727CD5C5200BDE5B4 /* MealCategory.swift */; };
+		9E0B050A27CE6C7A00BDE5B4 /* MealDBRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B050927CE6C7A00BDE5B4 /* MealDBRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,9 +53,10 @@
 		9E0B04EE27CCF73C00BDE5B4 /* FetchMealsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMealsUITests.swift; sourceTree = "<group>"; };
 		9E0B04F027CCF73C00BDE5B4 /* FetchMealsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMealsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9E0B04FD27CCFC4500BDE5B4 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
-		9E0B050327CD46DC00BDE5B4 /* MealDBAPIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDBAPIServiceTests.swift; sourceTree = "<group>"; };
-		9E0B050527CD475700BDE5B4 /* MealDBAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDBAPIService.swift; sourceTree = "<group>"; };
+		9E0B050327CD46DC00BDE5B4 /* MealDBAPIRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDBAPIRepositoryTests.swift; sourceTree = "<group>"; };
+		9E0B050527CD475700BDE5B4 /* MealDBAPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDBAPIRepository.swift; sourceTree = "<group>"; };
 		9E0B050727CD5C5200BDE5B4 /* MealCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCategory.swift; sourceTree = "<group>"; };
+		9E0B050927CE6C7A00BDE5B4 /* MealDBRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDBRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				9E0B04E427CCF73C00BDE5B4 /* FetchMealsTests.swift */,
-				9E0B050327CD46DC00BDE5B4 /* MealDBAPIServiceTests.swift */,
+				9E0B050327CD46DC00BDE5B4 /* MealDBAPIRepositoryTests.swift */,
 			);
 			path = FetchMealsTests;
 			sourceTree = "<group>";
@@ -138,7 +140,7 @@
 		9E0B04FF27CD3BAF00BDE5B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9E0B050527CD475700BDE5B4 /* MealDBAPIService.swift */,
+				9E0B050B27CE6C8100BDE5B4 /* Repository */,
 				9E0B050727CD5C5200BDE5B4 /* MealCategory.swift */,
 			);
 			path = Model;
@@ -166,6 +168,15 @@
 				9E0B04CF27CCF73900BDE5B4 /* SceneDelegate.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		9E0B050B27CE6C8100BDE5B4 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				9E0B050927CE6C7A00BDE5B4 /* MealDBRepository.swift */,
+				9E0B050527CD475700BDE5B4 /* MealDBAPIRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,11 +309,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E0B050A27CE6C7A00BDE5B4 /* MealDBRepository.swift in Sources */,
 				9E0B050827CD5C5200BDE5B4 /* MealCategory.swift in Sources */,
 				9E0B04D227CCF73900BDE5B4 /* ViewController.swift in Sources */,
 				9E0B04CE27CCF73900BDE5B4 /* AppDelegate.swift in Sources */,
 				9E0B04FE27CCFC4500BDE5B4 /* NavigationCoordinator.swift in Sources */,
-				9E0B050627CD475700BDE5B4 /* MealDBAPIService.swift in Sources */,
+				9E0B050627CD475700BDE5B4 /* MealDBAPIRepository.swift in Sources */,
 				9E0B04D027CCF73900BDE5B4 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,7 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E0B04E527CCF73C00BDE5B4 /* FetchMealsTests.swift in Sources */,
-				9E0B050427CD46DC00BDE5B4 /* MealDBAPIServiceTests.swift in Sources */,
+				9E0B050427CD46DC00BDE5B4 /* MealDBAPIRepositoryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  MealDBAPIService.swift
+//  MealDBAPIRepository.swift
 //  FetchMeals
 //
 //  Created by Joe Bonniwell on 2/28/22.
@@ -36,12 +36,10 @@ extension MealCategory {
     }
 }
 
-class MealDBAPIService {
+class MealDBAPIRepository {
     
     func getDataFromURL(_ url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        URLSession.shared.dataTask(with: allCategoriesURL(), completionHandler: {(data, response, error) in
-            completionHandler(data, response, error)
-        }).resume()
+        URLSession.shared.dataTask(with: url, completionHandler: completionHandler).resume()
     }
     
     func fetchAllCategories(withCallback callback: @escaping (_: [MealCategory]) -> Void) {

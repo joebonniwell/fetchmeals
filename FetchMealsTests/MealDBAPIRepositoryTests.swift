@@ -1,5 +1,5 @@
 //
-//  MealDBAPIServiceTests.swift
+//  MealDBAPIRepositoryTests.swift
 //  FetchMealsTests
 //
 //  Created by Joe Bonniwell on 2/28/22.
@@ -34,7 +34,7 @@ let sampleCategoryJSONData = """
 }
 """.data(using: .utf8)!
 
-class MealDBAPIServiceCallbackSuccessStub: MealDBAPIService {
+class MealDBAPIRepositoryCallbackSuccessStub: MealDBAPIRepository {
     override func getDataFromURL(_ url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
         DispatchQueue.main.async {
             completionHandler(sampleCategoryJSONData, nil, nil)
@@ -42,7 +42,7 @@ class MealDBAPIServiceCallbackSuccessStub: MealDBAPIService {
     }
 }
 
-class MealDBAPIServiceCallbackErrorStub: MealDBAPIService {
+class MealDBAPIRepositoryCallbackErrorStub: MealDBAPIRepository {
     override func getDataFromURL(_ url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
         DispatchQueue.main.async {
             // todo: generate an error here
@@ -51,7 +51,7 @@ class MealDBAPIServiceCallbackErrorStub: MealDBAPIService {
     }
 }
 
-class MealDBAPIServiceTests: XCTestCase {
+class MealDBAPIRepositoryTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -61,26 +61,26 @@ class MealDBAPIServiceTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testMealDBAPIServiceExists() throws {
-        let mealDBAPIService = MealDBAPIService()
-        XCTAssertNotNil(mealDBAPIService, "MealDBAPIService unable to be initialized")
+    func testMealDBAPIRepositoryExists() throws {
+        let mealDBAPIRepository = MealDBAPIRepository()
+        XCTAssertNotNil(mealDBAPIRepository, "MealDBAPIRepository unable to be initialized")
     }
     
-    func testMealDBAPIServiceDecodesSampleResponse() throws {
+    func testMealDBAPIRepositoryDecodesSampleResponse() throws {
         let categories = categoriesFromResponseData(sampleCategoryJSONData)
         XCTAssertEqual(3, categories.count)
         XCTAssertTrue(type(of: categories.first!) == MealCategory.self)
     }
     
-    func testMealDBAPIServiceCallsCallbackForCategories() throws {
-        let successMealDB = MealDBAPIServiceCallbackSuccessStub()
+    func testMealDBAPIRepositoryCallsCallbackForCategories() throws {
+        let successMealDB = MealDBAPIRepositoryCallbackSuccessStub()
         let successExpectation = self.expectation(description: "API Callback Success")
         successMealDB.fetchAllCategories(withCallback: {meals in
             successExpectation.fulfill()
             // meals would be 3 here ideally, but that is also testing the parsing
         })
         
-        let errorMealDB = MealDBAPIServiceCallbackErrorStub()
+        let errorMealDB = MealDBAPIRepositoryCallbackErrorStub()
         let errorExpectation = self.expectation(description: "API Callback Error")
         errorMealDB.fetchAllCategories(withCallback: {meals in
             errorExpectation.fulfill()
