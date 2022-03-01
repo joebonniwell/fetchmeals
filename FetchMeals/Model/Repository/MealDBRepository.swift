@@ -16,18 +16,42 @@ class MealDBRepository {
         self.apiRepository = apiRepository
     }
     
+    var allMealCategoriesCallbacks: [([MealCategory]) -> Void]?
+    
     func getAllMealCategories(withCallback callback: @escaping ([MealCategory]) -> Void) {
-        // todo: if we are already retrieving this from the api repository, inerveaning calls should at best have their callbacks queued and at worst be ignored
         // todo: ask local storage for them
-        self.apiRepository.fetchAllCategories(withCallback: {categories in
-            // todo: send the categories to the local storage
-            callback(categories)
-        })
+        if self.allMealCategoriesCallbacks != nil {
+            self.allMealCategoriesCallbacks?.append(callback)
+        } else {
+            self.allMealCategoriesCallbacks = [callback]
+            self.apiRepository.fetchAllCategories(withCallback: {categories in
+                // todo: send the categories to the local storage
+                self.allMealCategoriesCallbacks?.forEach({ $0(categories) })
+                self.allMealCategoriesCallbacks = nil
+            })
+        }
     }
     
     // get meals for category
+//    func mealsForCategory(category: MealCategry, callback: @escaping ([Meal]) -> Void) -> Void {
+//
+//    }
     
-    // image for category
+    var categoryImageCallbacks: [String: [(Data?) -> Void]] = [:]
+    
+    // todo: I think this refactors to a common getImageFor by extracting the string from either category or meal...
+    func getImageForCategory(category: MealCategory, callback: @escaping (Data?) -> Void) {
+        // todo: ask local storage for the image data
+        if var existingCategoryCallbacks = self.categoryImageCallbacks[category.imageURL] {
+            existingCategoryCallbacks.append(callback)
+        } else {
+            self.categoryImageCallbacks[category.imageURL] = [callback]
+            self.apiRepository.fetchImageWithURL(urlString: category.imageURL, callback: {data in
+                self.categoryImageCallbacks[category.imageURL]?.forEach({ $0(data) })
+                self.categoryImageCallbacks.removeValue(forKey: category.imageURL)
+            })
+        }
+    }
     
     // image for meal
 }

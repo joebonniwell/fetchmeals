@@ -22,7 +22,7 @@ class CategoriesViewModel: BaseViewModel {
         }
         
         self.repository.getAllMealCategories(withCallback: {mealCategories in
-            self.localCategoryViewModels = mealCategories.map({ CategoryViewModel(withMealCategory: $0)}).sorted(by: { $0.categoryTitle() < $1.categoryTitle() })
+            self.localCategoryViewModels = mealCategories.map({ CategoryViewModel(withMealCategory: $0, repository: self.repository)}).sorted(by: { $0.categoryTitle() < $1.categoryTitle() })
             self.updateAllObservers()
         })
         

@@ -56,6 +56,19 @@ class MealDBAPIRepository {
     // Fetch Meal detail(s) by ID
     
     // Fetch Image by URL
+    func fetchImageWithURL(urlString: String, callback: @escaping (_: Data?) -> Void) {
+        guard let imageURL = URL(string: urlString) else {
+            callback(nil)
+            return
+        }
+        
+        self.getDataFromURL(imageURL, completionHandler: {(data, response, error) in
+            if let error = error {
+                print("error fetching image \(error) \(urlString)")
+            }
+            callback(data)
+        })
+    }
     
 }
 

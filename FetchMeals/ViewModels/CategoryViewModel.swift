@@ -7,16 +7,27 @@
 
 import Foundation
 
-class CategoryViewModel {
-    let category: MealCategory!
+class CategoryViewModel: BaseViewModel {
+    let repository: MealDBRepository
+    let category: MealCategory
+    var localCategoryImageData: Data?
     
-    init(withMealCategory mealCategory: MealCategory) {
+    init(withMealCategory mealCategory: MealCategory, repository: MealDBRepository) {
         self.category = mealCategory
+        self.repository = repository
     }
     
     func categoryTitle() -> String {
         return self.category.title
     }
     
-    // category Image
+    func categoryImageData() -> Data? {
+        if self.localCategoryImageData == nil {
+            self.repository.getImageForCategory(category: self.category, callback: {data in
+                self.localCategoryImageData = data
+                self.updateAllObservers()
+            })
+        }
+        return self.localCategoryImageData
+    }
 }
