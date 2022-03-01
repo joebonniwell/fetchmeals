@@ -48,10 +48,8 @@ class MealDBAPIService {
         self.getDataFromURL(allCategoriesURL(), completionHandler: {(data, response, error) in
             if let error = error {
                 print("error fetching categories: \(error)")
-                callback([])
-            } else if let categoryData = data {
-                callback(categoriesFromResponseData(categoryData))
             }
+            callback(categoriesFromResponseData(data))
         })
     }
     
@@ -63,8 +61,8 @@ class MealDBAPIService {
     
 }
 
-func categoriesFromResponseData(_ responseData: Data) -> [MealCategory] {
-    if let allCategoriesResponse = try? JSONDecoder().decode(AllCategoriesResponse.self, from: responseData) {
+func categoriesFromResponseData(_ responseData: Data?) -> [MealCategory] {
+    if let data = responseData, let allCategoriesResponse = try? JSONDecoder().decode(AllCategoriesResponse.self, from: data) {
         return allCategoriesResponse.categories.map() { MealCategory(withCategoryDTO: $0) }
     }
     return []

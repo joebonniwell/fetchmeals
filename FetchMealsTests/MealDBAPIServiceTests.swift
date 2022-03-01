@@ -34,6 +34,23 @@ let sampleCategoryJSONData = """
 }
 """.data(using: .utf8)!
 
+class MealDBAPIServiceCallbackSuccessStub: MealDBAPIService {
+    override func getDataFromURL(_ url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        DispatchQueue.main.async {
+            completionHandler(sampleCategoryJSONData, nil, nil)
+        }
+    }
+}
+
+class MealDBAPIServiceCallbackErrorStub: MealDBAPIService {
+    override func getDataFromURL(_ url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        DispatchQueue.main.async {
+            // todo: generate an error here
+            completionHandler(nil, nil, nil)
+        }
+    }
+}
+
 class MealDBAPIServiceTests: XCTestCase {
 
     override func setUpWithError() throws {
@@ -56,11 +73,21 @@ class MealDBAPIServiceTests: XCTestCase {
     }
     
     func testMealDBAPIServiceCallsCallbackForCategories() throws {
-        // create a meal service db
-        // mock the get data from url method with success response
-        // call the get categories and verify callback is called on success
-        // mock get data from url method with error response
-        // call the get categories and verify callback is called on error
+        let successMealDB = MealDBAPIServiceCallbackSuccessStub()
+        let successExpectation = self.expectation(description: "API Callback Success")
+        successMealDB.fetchAllCategories(withCallback: {meals in
+            successExpectation.fulfill()
+            // meals would be 3 here ideally, but that is also testing the parsing
+        })
+        
+        let errorMealDB = MealDBAPIServiceCallbackErrorStub()
+        let errorExpectation = self.expectation(description: "API Callback Error")
+        errorMealDB.fetchAllCategories(withCallback: {meals in
+            errorExpectation.fulfill()
+            // could also assert that meals is empty here
+        })
+        
+        waitForExpectations(timeout: 2, handler: nil)
     }
 
 }
