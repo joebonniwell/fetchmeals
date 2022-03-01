@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        print("appDelegate didFinishLaunchingWithOptions")
+        print("Welcome to FetchMeals!")
         
         if #available(iOS 13, *) {
             print("iOS 13+")

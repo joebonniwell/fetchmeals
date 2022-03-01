@@ -17,6 +17,7 @@ class MealDBRepository {
     }
     
     func getAllMealCategories(withCallback callback: @escaping ([MealCategory]) -> Void) {
+        // todo: if we are already retrieving this from the api repository, inerveaning calls should at best have their callbacks queued and at worst be ignored
         // todo: ask local storage for them
         self.apiRepository.fetchAllCategories(withCallback: {categories in
             // todo: send the categories to the local storage

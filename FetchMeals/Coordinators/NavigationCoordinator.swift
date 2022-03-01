@@ -11,9 +11,15 @@ import UIKit
 func mainWindow() -> UIWindow {
     let window = UIWindow(frame: UIScreen.main.bounds)
     
-    let viewController = ViewController()
-    window.rootViewController = viewController
+    let repository = MealDBRepository()
+    let categoriesViewModel = CategoriesViewModel(repository: repository, categoryViewModels: nil)
+    // todo: need to pass the categoriesViewModel a way to call a method on self (which actually doesn't exist at this point since this is just a global function)
+    let categoriesViewController = CategoriesTableViewController()
+    categoriesViewController.configureWithViewModel(viewModel: categoriesViewModel)
     
+    let navigationController = UINavigationController(rootViewController: categoriesViewController)
+    
+    window.rootViewController = navigationController
     window.makeKeyAndVisible()
     return window
 }
